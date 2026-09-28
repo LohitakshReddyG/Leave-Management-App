@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClockIt — leave management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Clock<span>It</span></div>
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="employee">Employee</button>
+    <button class="tab" data-tab="manager" hidden>Manager</button>
+    <button class="tab" data-tab="hr" hidden>HR</button>
+  </nav>
+  <div class="login">
+    <label for="userSelect">Logged in as</label>
+    <select id="userSelect"><option value="">loading…</option></select>
+    <span class="role-pill" id="rolePill" hidden></span>
+  </div>
+</header>
+
+<main>
+  <div class="notice" id="notice" hidden></div>
+
+  <!-- ============ EMPLOYEE TAB ============ -->
+  <section id="tab-employee" class="panel active">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Apply for leave</h3>
+        <form id="applyForm">
+          <label>Leave type
+            <select id="leaveType" required></select>
+          </label>
+          <div class="row">
+            <label>Start <input type="date" id="startDate" required></label>
+            <label>End <input type="date" id="endDate" required></label>
+          </div>
+          <label>Reason <textarea id="reason" rows="2" placeholder="optional"></textarea></label>
+          <button type="submit" class="btn primary">Submit request</button>
+        </form>
+      </div>
+      <div class="card" id="balanceCard">
+        <h3 id="balanceTitle">Balance</h3>
+        <div class="balance" id="balanceBody">
+          <div class="bal"><span class="bal-num" id="balEntitled">–</span><span class="bal-label">entitled days</span></div>
+          <div class="bal"><span class="bal-num" id="balUsed">–</span><span class="bal-label">used (incl. pending)</span></div>
+          <div class="bal"><span class="bal-num accent" id="balRemaining">–</span><span class="bal-label">remaining</span></div>
+        </div>
+        <p class="hint" id="balHint"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>My requests</h3>
+      <table class="tbl" id="myRequestsTable">
+        <thead><tr>
+          <th>#</th><th>Type</th><th>Dates</th><th>Days</th><th>Status</th><th>Conflict</th><th></th>
+        </tr></thead>
+        <tbody><tr><td colspan="7" class="empty">No requests yet — apply above.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ MANAGER TAB ============ -->
+  <section id="tab-manager" class="panel">
+    <div class="card">
+      <h3>Pending approvals <span class="count" id="mgrCount"></span></h3>
+      <p class="hint">Conflict-flagged requests show who is already off — they are flagged for you, never auto-rejected.</p>
+      <table class="tbl" id="managerQueueTable">
+        <thead><tr>
+          <th>#</th><th>Employee</th><th>Days</th><th>Dates</th><th>Status</th><th>Conflict</th><th>Decision</th>
+        </tr></thead>
+        <tbody><tr><td colspan="7" class="empty">Nothing pending.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Notifications</h3>
+      <ul class="feed" id="managerFeed"><li class="empty">No notifications.</li></ul>
+    </div>
+  </section>
+
+  <!-- ============ HR TAB ============ -->
+  <section id="tab-hr" class="panel">
+    <div class="escalation-banner" id="escalationBanner" hidden></div>
+    <div class="card">
+      <h3>Second-stage approvals <span class="count" id="hrCount"></span></h3>
+      <table class="tbl" id="hrQueueTable">
+        <thead><tr>
+          <th>#</th><th>Employee</th><th>Days</th><th>Dates</th><th>Status</th><th>Conflict</th><th>Decision</th>
+        </tr></thead>
+        <tbody><tr><td colspan="7" class="empty">Nothing pending.</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Escalations & conflicts</h3>
+      <ul class="feed" id="hrFeed"><li class="empty">No notifications.</li></ul>
+    </div>
+  </section>
+</main>
+
+<!-- ============ HISTORY MODAL ============ -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Request timeline <span id="modalReqId"></span></h3>
+      <button class="btn ghost" id="modalClose">Close</button>
+    </div>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</div>
+
+<footer class="foot">ClockIt · leave management with approval chains · H2 restart-safe · <span id="refreshNote"></span></footer>
+
+<script src="app.js"></script>
+</body>
+</html>

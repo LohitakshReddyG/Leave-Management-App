@@ -1,0 +1,368 @@
+:root {
+  --ink: #1c2333;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --accent: #c2410c;
+  --accent-soft: #fff1e7;
+  --ok: #1a7f4b;        --ok-bg: #e9f7ef;
+  --warn: #92600a;      --warn-bg: #fdf3d7;
+  --bad: #b42318;       --bad-bg: #fdeae8;
+  --grey: #5b6472;      --grey-bg: #eef0f3;
+  --emp-color: #2563eb; --emp-bg: #eff6ff;
+  --mgr-color: #d97706; --mgr-bg: #fffbeb;
+  --hr-color: #7c3aed;  --hr-bg: #f5f3ff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: var(--card); border-bottom: 1px solid var(--line);
+  padding: 12px 28px; position: sticky; top: 0; z-index: 5;
+}
+.brand { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+.brand span { color: var(--accent); }
+
+.portal-tag {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 700;
+}
+.portal-tag.portal-badge-emp { background: var(--emp-bg); color: var(--emp-color); border: 1px solid #bfdbfe; }
+.portal-tag.portal-badge-mgr { background: var(--mgr-bg); color: var(--mgr-color); border: 1px solid #fde68a; }
+.portal-tag.portal-badge-hr  { background: var(--hr-bg);  color: var(--hr-color);  border: 1px solid #ddd6fe; }
+
+.tabs { display: flex; gap: 6px; flex: 1; margin-left: 10px; }
+.tab {
+  border: 1px solid transparent; background: none; padding: 8px 18px;
+  font: inherit; font-weight: 600; color: var(--muted); cursor: pointer;
+  border-radius: 999px; transition: all 0.15s ease;
+}
+.tab:hover { background: #f3f4f6; color: var(--ink); }
+.tab.active { background: var(--accent-soft); color: var(--accent); border-color: #f3c9ac; }
+
+.user-profile-bar {
+  display: flex; align-items: center; gap: 14px;
+}
+.user-profile-info {
+  display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600;
+}
+.role-pill {
+  background: var(--ink); color: #fff; border-radius: 999px;
+  padding: 3px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+}
+.switch-portal-btn {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 12.5px; padding: 6px 12px; border-radius: 8px;
+  cursor: pointer; border: 1px solid var(--line);
+}
+.switch-portal-btn:hover {
+  background: #fee2e2; border-color: #fca5a5; color: #b91c1c;
+}
+
+/* ---------- Hierarchy Banner ---------- */
+.hierarchy-banner {
+  background: #ffffff; border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.hierarchy-title {
+  display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink);
+  margin-bottom: 10px;
+}
+.hierarchy-indicator-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block;
+}
+.hierarchy-steps {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.h-step {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px; background: var(--bg); border-radius: 8px;
+  border: 1px solid var(--line); transition: all 0.2s ease;
+}
+.h-step.active {
+  background: var(--accent-soft); border-color: #f97316; box-shadow: 0 0 0 1px #f97316;
+}
+.h-step-badge {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #fff; border: 1px solid var(--line); display: flex;
+  align-items: center; justify-content: center; font-size: 11px; font-weight: 800;
+}
+.h-step.active .h-step-badge {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.h-step-info { display: flex; flex-direction: column; }
+.h-step-label { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+.h-step-action { font-size: 11px; color: var(--muted); }
+.h-step-arrow { color: var(--muted); font-size: 14px; font-weight: bold; }
+
+/* ---------- Login Portal Screen ---------- */
+.login-portal-wrapper {
+  min-height: 90vh; display: flex; align-items: center; justify-content: center;
+  padding: 40px 20px;
+}
+.login-portal-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+  padding: 32px 36px; width: 720px; max-width: 100%;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  display: flex; flex-direction: column; gap: 22px;
+}
+.portal-header { text-align: center; }
+.portal-header .brand { font-size: 28px; }
+.portal-header h2 { margin: 8px 0 4px; font-size: 22px; font-weight: 700; color: var(--ink); }
+.portal-sub { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* Role Switcher Tab Bar */
+.role-switcher-tabs {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  background: var(--bg); padding: 6px; border-radius: 14px;
+}
+.role-tab {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  border: 1px solid transparent; background: transparent; border-radius: 10px;
+  cursor: pointer; text-align: left; transition: all 0.2s ease;
+}
+.role-tab:hover { background: rgba(255,255,255,0.6); }
+.role-tab.active {
+  background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.role-tab.active.employee { border-color: #93c5fd; }
+.role-tab.active.manager  { border-color: #fcd34d; }
+.role-tab.active.hr       { border-color: #c4b5fd; }
+.role-tab.active.register { border-color: #6ee7b7; }
+
+.role-tag-pill {
+  font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.role-tag-pill.emp { background: var(--emp-bg); color: var(--emp-color); }
+.role-tag-pill.mgr { background: var(--mgr-bg); color: var(--mgr-color); }
+.role-tag-pill.hr  { background: var(--hr-bg);  color: var(--hr-color); }
+.role-tag-pill.new { background: #ecfdf5; color: #059669; }
+
+.role-tab-text { display: flex; flex-direction: column; overflow: hidden; }
+.role-tab-title { font-size: 12.5px; font-weight: 700; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.role-tab-sub { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+
+/* Portal Form Section */
+.portal-form-container {
+  background: #fafafa; border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; display: flex; flex-direction: column; gap: 18px;
+}
+.portal-role-banner {
+  display: flex; align-items: center; gap: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.portal-role-banner-text { display: flex; flex-direction: column; gap: 2px; }
+.portal-stage-badge {
+  align-self: flex-start; font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--accent); background: var(--accent-soft);
+  padding: 2px 8px; border-radius: 6px;
+}
+.portal-form-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+.portal-form-desc { font-size: 13px; color: var(--muted); }
+
+.portal-login-form { display: flex; flex-direction: column; gap: 16px; }
+.portal-select {
+  padding: 10px 14px; font-size: 14px; border-radius: 10px;
+}
+
+.user-chips { display: flex; flex-direction: column; gap: 8px; }
+.chips-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+.chips-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.user-chip {
+  display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.15s ease;
+}
+.user-chip:hover { border-color: #94a3b8; background: #f8fafc; }
+.user-chip.active {
+  border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700;
+}
+.chip-avatar {
+  width: 20px; height: 20px; border-radius: 50%; background: #e2e8f0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+
+.selected-user-card {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  background: #ffffff; border: 1px solid var(--line); border-radius: 10px;
+}
+.selected-user-card .user-avatar {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700;
+}
+.selected-user-card .user-details { display: flex; flex-direction: column; gap: 2px; }
+.selected-user-card .user-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+.selected-user-card .user-email { font-size: 12px; color: var(--muted); }
+.selected-user-card .user-role-badge {
+  font-size: 10px; font-weight: 700; background: var(--grey-bg);
+  color: var(--grey); padding: 1px 6px; border-radius: 4px; align-self: flex-start;
+}
+
+.portal-submit-btn {
+  padding: 12px 20px; font-size: 15px; border-radius: 10px; font-weight: 700;
+}
+.portal-footer-hint {
+  font-size: 12.5px; color: var(--muted); text-align: center; line-height: 1.5;
+  background: var(--bg); padding: 10px 14px; border-radius: 10px;
+}
+
+/* ---------- Table Approval Chain Steps ---------- */
+.approval-progress-steps {
+  display: flex; align-items: center; gap: 4px; font-size: 11.5px; white-space: nowrap;
+}
+.step-tag {
+  padding: 2px 7px; border-radius: 6px; background: #e2e8f0; color: #475569; font-weight: 600;
+}
+.step-tag.done { background: var(--ok-bg); color: var(--ok); }
+.step-tag.current { background: var(--warn-bg); color: var(--warn); border: 1px solid #fcd34d; font-weight: 700; }
+.step-tag.escalated { background: var(--bad-bg); color: var(--bad); border: 1px dashed var(--bad); }
+.step-tag.rejected { background: var(--bad-bg); color: var(--bad); text-decoration: line-through; }
+.step-arrow { color: #94a3b8; font-size: 11px; }
+
+/* ---------- Modal Hierarchy Chain ---------- */
+.modal-hierarchy-chain {
+  display: flex; align-items: center; gap: 8px; margin: 14px 0 18px;
+  background: var(--bg); padding: 10px 14px; border-radius: 10px;
+}
+.m-step { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.m-step.done { color: var(--ok); }
+.m-step.active { color: var(--warn); }
+.m-step.fail { color: var(--bad); }
+.m-dot {
+  width: 18px; height: 18px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 10px; font-weight: 800;
+  background: #e2e8f0; color: #475569;
+}
+.m-step.done .m-dot { background: var(--ok-bg); color: var(--ok); }
+.m-step.active .m-dot { background: var(--warn-bg); color: var(--warn); }
+.m-step.fail .m-dot { background: var(--bad-bg); color: var(--bad); }
+.m-arrow { color: #cbd5e1; font-size: 12px; }
+
+/* ---------- layout ---------- */
+main { max-width: 1180px; margin: 24px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 20px; }
+.panel { display: none; flex-direction: column; gap: 20px; }
+.panel.active { display: flex; }
+.grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px 24px; box-shadow: 0 1px 2px rgba(16,24,40,.04);
+}
+.card h3 { margin: 0 0 6px; font-size: 17px; }
+.count { color: var(--muted); font-weight: 400; font-size: 14px; }
+.hint { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+
+/* ---------- forms ---------- */
+form { display: flex; flex-direction: column; gap: 12px; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input, select, textarea {
+  font: inherit; padding: 9px 12px; border: 1px solid var(--line);
+  border-radius: 9px; background: #fff; color: var(--ink);
+}
+textarea { resize: vertical; }
+.btn {
+  font: inherit; font-weight: 600; border-radius: 9px; cursor: pointer;
+  padding: 9px 16px; border: 1px solid var(--line); background: #fff;
+  transition: all 0.15s ease;
+}
+.btn:hover { opacity: 0.92; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.approve { background: var(--ok-bg); border-color: #bfe3cd; color: var(--ok); }
+.btn.reject  { background: var(--bad-bg); border-color: #f2c5c0; color: var(--bad); }
+.btn.ghost { background: none; border-color: var(--line); color: var(--muted); }
+.btn.small { padding: 5px 10px; font-size: 13px; }
+
+/* ---------- balance ---------- */
+.balance { display: flex; gap: 12px; }
+.bal {
+  flex: 1; background: var(--bg); border-radius: 12px; padding: 16px 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.bal-num { font-size: 30px; font-weight: 700; }
+.bal-num.accent { color: var(--accent); }
+.bal-label { font-size: 12px; color: var(--muted); text-align: center; }
+
+/* ---------- tables ---------- */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th {
+  text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .4px;
+  color: var(--muted); border-bottom: 2px solid var(--line); padding: 8px 10px;
+}
+.tbl td { border-bottom: 1px solid var(--line); padding: 10px; vertical-align: middle; }
+.tbl .empty { color: var(--muted); text-align: center; padding: 22px; }
+
+/* ---------- pills & badges ---------- */
+.pill {
+  display: inline-block; padding: 3px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; white-space: nowrap;
+}
+.pill.pending { background: var(--warn-bg); color: var(--warn); }
+.pill.approved { background: var(--ok-bg); color: var(--ok); }
+.pill.rejected, .pill.cancelled { background: var(--grey-bg); color: var(--grey); }
+.pill.escalated { background: var(--bad-bg); color: var(--bad); outline: 1px dashed var(--bad); }
+.badge-conflict {
+  display: inline-block; padding: 3px 10px; border-radius: 999px; cursor: help;
+  background: var(--bad-bg); color: var(--bad); font-size: 12px; font-weight: 700;
+}
+
+/* ---------- feeds ---------- */
+.feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.feed li {
+  border: 1px solid var(--line); border-left: 4px solid var(--muted);
+  border-radius: 10px; padding: 10px 14px; font-size: 14px; background: #fff;
+}
+.feed li.ESCALATION { border-left-color: var(--bad); }
+.feed li.CONFLICT { border-left-color: var(--warn); }
+.feed li.APPROVED { border-left-color: var(--ok); }
+.feed li.REJECTED_BY_MANAGER, .feed li.REJECTED_BY_HR { border-left-color: var(--grey); }
+.feed li .meta { color: var(--muted); font-size: 12px; display: block; }
+.feed li.empty { border: none; color: var(--muted); }
+
+.escalation-banner {
+  background: var(--bad-bg); border: 1px solid #f2c5c0; border-radius: 14px;
+  padding: 14px 20px; color: var(--bad); font-weight: 600;
+}
+
+/* ---------- notice ---------- */
+.notice {
+  border-radius: 12px; padding: 12px 18px; font-weight: 600;
+  border: 1px solid var(--line); background: var(--card);
+}
+.notice.err { border-color: #f2c5c0; background: var(--bad-bg); color: var(--bad); }
+.notice.ok { border-color: #bfe3cd; background: var(--ok-bg); color: var(--ok); }
+
+/* ---------- modal ---------- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(15,23,42,.45);
+  display: flex; align-items: center; justify-content: center; z-index: 20;
+}
+.modal {
+  background: #fff; border-radius: 16px; padding: 24px 28px; width: 620px; max-width: 92vw;
+  max-height: 80vh; overflow: auto;
+}
+.modal-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.timeline { list-style: none; margin: 16px 0 0; padding: 0 0 0 22px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.timeline li { position: relative; padding: 0 0 18px; }
+.timeline li::before {
+  content: ""; position: absolute; left: -21px; top: 5px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line);
+}
+.timeline .move { font-weight: 700; font-size: 14px; }
+.timeline .move .arr { color: var(--muted); font-weight: 400; }
+.timeline .sub { color: var(--muted); font-size: 12.5px; }
+
+.foot { text-align: center; color: var(--muted); font-size: 12.5px; padding: 18px 0 26px; }
+
+/* React app boot placeholder */
+.boot { display: flex; align-items: center; justify-content: center; min-height: 90vh; color: var(--muted); font-size: 18px; }
